@@ -78,7 +78,7 @@ class PreApproved extends Plugin
 	 * This function is executed when the action "comment_insert_before"
 	 * is invoked from a Comment object.
 	 * The parent class, Plugin, handles registering the action 
-	 * and hook name using the name of the function to determine coun
+	 * and hook name using the name of the function to determine 
 	 * where it will be applied.
 	 * You can still register functions as hooks without using
 	 * this method, but boy, is it handy.
