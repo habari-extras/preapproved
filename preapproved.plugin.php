@@ -2,7 +2,7 @@
 
 /*
  * PreApproved Class
- * 
+ *
  * This class allows us to auto-approve comments
  *
  */
@@ -34,7 +34,7 @@ class PreApproved extends Plugin
 	{
 		if ( realpath( $file ) == __FILE__ ) {
 			EventLog::register_type( 'PreApproved' );
-			if( !(Options::get( 'preapproved__approved_count' ) ) ) {
+			if ( !( Options::get( 'preapproved__approved_count' ) ) ) {
 				Options::set( 'preapproved__approved_count', 1 );
 			}
 		}
@@ -52,8 +52,8 @@ class PreApproved extends Plugin
 
 	public function filter_plugin_config($actions, $plugin_id)
 	{
-		if ($plugin_id == $this->plugin_id()) {
-			$actions[] = _t( 'Configure' );
+		if ( $plugin_id == $this->plugin_id() ) {
+			$actions[]= _t( 'Configure' );
 		}
 		return $actions;
 	}
@@ -61,12 +61,13 @@ class PreApproved extends Plugin
 	public function action_plugin_ui($plugin_id, $action)
 	{
 		if ( $plugin_id == $this->plugin_id() ) {
-			switch ($action) {
+			switch ( $action ) {
 				case _t( 'Configure' ):
 					$form= new FormUI( 'preapproved' );
 					$form->append( 'text', 'approved_count', 'option:preapproved__approved_count', _t( 'Required number of approved comments: ' ) );
 					$form->approved_count->add_validator( array( $this, 'validate_integer' ) );
 					$form->append( 'submit', 'save', _t( 'Save' ) );
+					$form->set_option( 'success_message', _t( 'Configuration saved' ) );
 					$form->out();
 				break;
 			}
@@ -77,8 +78,8 @@ class PreApproved extends Plugin
 	 * function act_comment_insert_before
 	 * This function is executed when the action "comment_insert_before"
 	 * is invoked from a Comment object.
-	 * The parent class, Plugin, handles registering the action 
-	 * and hook name using the name of the function to determine 
+	 * The parent class, Plugin, handles registering the action
+	 * and hook name using the name of the function to determine
 	 * where it will be applied.
 	 * You can still register functions as hooks without using
 	 * this method, but boy, is it handy.
@@ -89,7 +90,7 @@ class PreApproved extends Plugin
 	{
 		// This plugin ignores non-comments
 		if( $comment->type == Comment::COMMENT ) {
-			if( Comments::get( array( 'email' => $comment->email, 'name' => $comment->name, 
+			if( Comments::get( array( 'email' => $comment->email, 'name' => $comment->name,
 								'url' => $comment->url, 'status' => Comment::STATUS_APPROVED ) )->count >= Options::get( 'preapproved__approved_count' ) ) {
 				$comment->status = Comment::STATUS_APPROVED;
 				EventLog::log( 'Comment by ' . $comment->name . ' automatically approved.', 'info', 'PreApproved', 'Preapproved' );
@@ -104,11 +105,11 @@ class PreApproved extends Plugin
 	}
 
 	/*
-	* Add update beacon support 
+	* Add update beacon support
 	*/
 	function action_update_check()
 	{
-		Update::add( 'PreApproved', '0fa22c74-a0d6-11dc-8314-0800200c9a66', $this->info->version ); 
+		Update::add( 'PreApproved', '0fa22c74-a0d6-11dc-8314-0800200c9a66', $this->info->version );
 	}
 
 	/*
