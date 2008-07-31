@@ -93,7 +93,7 @@ class PreApproved extends Plugin
 			if( Comments::get( array( 'email' => $comment->email, 'name' => $comment->name,
 								'url' => $comment->url, 'status' => Comment::STATUS_APPROVED ) )->count >= Options::get( 'preapproved__approved_count' ) ) {
 				$comment->status = Comment::STATUS_APPROVED;
-				EventLog::log( 'Comment by ' . $comment->name . ' automatically approved.', 'info', 'PreApproved', 'Preapproved' );
+				EventLog::log( 'Comment by ' . $comment->name . ' automatically approved.', 'info', 'PreApproved', 'PreApproved' );
 			}
 		}
 		return $comment;
