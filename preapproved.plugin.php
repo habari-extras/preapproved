@@ -21,7 +21,7 @@ class PreApproved extends Plugin
 			'url' => 'http://habariproject.org/',
 			'author' => 'Habari Community',
 			'authorurl' => 'http://habariproject.org/',
-			'version' => '1.2',
+			'version' => '1.3',
 			'description' => 'Automatically approve comments based on the number of approved comments the commenter has previously made.',
 			'license' => 'Apache License 2.0',
 		);
@@ -88,12 +88,12 @@ class PreApproved extends Plugin
 	 */
 	function action_comment_insert_before ( $comment )
 	{
-		// This plugin ignores non-comments
-		if( $comment->type == Comment::COMMENT ) {
+		// This plugin ignores non-comments and comments already marked as spam
+		if( $comment->type == Comment::COMMENT && $comment->status != Comment::STATUS_SPAM) {
 			if( Comments::get( array( 'email' => $comment->email, 'name' => $comment->name,
 								'url' => $comment->url, 'status' => Comment::STATUS_APPROVED ) )->count >= Options::get( 'preapproved__approved_count' ) ) {
 				$comment->status = Comment::STATUS_APPROVED;
-				EventLog::log( 'Comment by ' . $comment->name . ' automatically approved.', 'info', 'PreApproved', 'PreApproved' );
+				EventLog::log( 'Comment by ' . $comment->name . ' automatically approved.', 'info', 'PreApproved', 'Preapproved' );
 			}
 		}
 		return $comment;
