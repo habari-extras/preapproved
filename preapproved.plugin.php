@@ -21,7 +21,7 @@ class PreApproved extends Plugin
 			'url' => 'http://habariproject.org/',
 			'author' => 'Habari Community',
 			'authorurl' => 'http://habariproject.org/',
-			'version' => '1.3',
+			'version' => '1.3.1',
 			'description' => 'Automatically approve comments based on the number of approved comments the commenter has previously made.',
 			'license' => 'Apache License 2.0',
 		);
