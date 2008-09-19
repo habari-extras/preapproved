@@ -63,7 +63,7 @@ class PreApproved extends Plugin
 		if ( $plugin_id == $this->plugin_id() ) {
 			switch ( $action ) {
 				case _t( 'Configure' ):
-					$form= new FormUI( 'preapproved' );
+					$form = new FormUI( 'preapproved' );
 					$form->append( 'text', 'approved_count', 'option:preapproved__approved_count', _t( 'Required number of approved comments: ' ) );
 					$form->approved_count->add_validator( array( $this, 'validate_integer' ) );
 					$form->append( 'submit', 'save', _t( 'Save' ) );
