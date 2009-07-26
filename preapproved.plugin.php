@@ -9,23 +9,6 @@
 
 class PreApproved extends Plugin
 {
-	/*
-	 * function info
-	 * Returns information about this plugin
-	 * @return array Plugin info array
-	 */
-	function info()
-	{
-		return array (
-			'name' => 'PreApproved',
-			'url' => 'http://habariproject.org/',
-			'author' => 'Habari Community',
-			'authorurl' => 'http://habariproject.org/',
-			'version' => '1.3.1',
-			'description' => 'Automatically approve comments based on the number of approved comments the commenter has previously made.',
-			'license' => 'Apache License 2.0',
-		);
-	}
 
 	/*
 	 * Register the PreApproved event type with the event log
