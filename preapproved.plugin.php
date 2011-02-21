@@ -33,28 +33,14 @@ class PreApproved extends Plugin
 		}
 	}
 
-	public function filter_plugin_config($actions, $plugin_id)
+	public function configure()
 	{
-		if ( $plugin_id == $this->plugin_id() ) {
-			$actions[]= _t( 'Configure' );
-		}
-		return $actions;
-	}
-
-	public function action_plugin_ui($plugin_id, $action)
-	{
-		if ( $plugin_id == $this->plugin_id() ) {
-			switch ( $action ) {
-				case _t( 'Configure' ):
-					$form = new FormUI( 'preapproved' );
-					$form->append( 'text', 'approved_count', 'option:preapproved__approved_count', _t( 'Required number of approved comments: ' ) );
-					$form->approved_count->add_validator( array( $this, 'validate_integer' ) );
-					$form->append( 'submit', 'save', _t( 'Save' ) );
-					$form->set_option( 'success_message', _t( 'Configuration saved' ) );
-					$form->out();
-				break;
-			}
-		}
+		$form = new FormUI( 'preapproved' );
+		$form->append( 'text', 'approved_count', 'option:preapproved__approved_count', _t( 'Required number of approved comments: ' ) );
+		$form->approved_count->add_validator( array( $this, 'validate_integer' ) );
+		$form->append( 'submit', 'save', _t( 'Save' ) );
+		$form->set_option( 'success_message', _t( 'Configuration saved' ) );
+		$form->out();
 	}
 
 	/*
@@ -85,14 +71,6 @@ class PreApproved extends Plugin
 	function set_priorities()
 	{
 	  return array( 'action_comment_insert_before' => 10 );
-	}
-
-	/*
-	* Add update beacon support
-	*/
-	function action_update_check()
-	{
-		Update::add( 'PreApproved', '0fa22c74-a0d6-11dc-8314-0800200c9a66', $this->info->version );
 	}
 
 	/*

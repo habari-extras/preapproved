@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <pluggable type="plugin">
 	<name>PreApproved</name>
-	<author url="http://habariproject.org/">Habari Community</author>
-	<version>1.3.2</version>
+	<author url="http://habariproject.org/">The Habari Community</author>
+	<version>1.4</version>
+	<guid>0fa22c74-a0d6-11dc-8314-0800200c9a66</guid>
 	<url>http://habariproject.org/</url>
 	<description><![CDATA[Automatically approve comments based on the number of approved comments the commenter has previously made.]]></description>
 	<license url="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</license>
