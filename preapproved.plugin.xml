@@ -6,6 +6,9 @@
 	<guid>0fa22c74-a0d6-11dc-8314-0800200c9a66</guid>
 	<url>http://habariproject.org/</url>
 	<description><![CDATA[Automatically approve comments based on the number of approved comments the commenter has previously made.]]></description>
+	<help><value><![CDATA[<p>Configuration for PreApproved is performed by clicking the Configure button in its listing on your plugins page. The configuration screen has only one field - the number of comments the commenter must already have in the database to have new comments automatically approved. If you enter the number zero in this field, all comments will be automatically approved, unless a spamchecker plugin has run previously and marked the comment as spam.</p>
+	<p>After you're done making your configuration changes, click the 'Save' button at the bottom of the form to save the changes. Click the 'Close' button to completely close the form.</p>
+	<p>For information on installation and uninstallation, see the readme file.</p>]]></value></help>
 	<license url="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</license>
 	<copyright>2009</copyright>
 </pluggable> 
